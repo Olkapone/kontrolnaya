@@ -3,25 +3,39 @@
 
 class Program
 {
-    static void Main() {
+    
+    static int getOutputArrayLength (string[] inputArray) {
         
-        string[] inputArray = new string[] { "hello", "2", "world", ":-)", "1234", "1567", "-2", "computer science", "Russia", "Denmark", "Kazan"};
-        int size = inputArray.Length;
-        string[] outputArray = new string[size];
-        int minCount = 0;
-
-        for (int i = 0; i < size; i++)
+        int outputArraySize = 0;
+        
+        for (int i = 0; i < inputArray.Length; ++i)
         {
             if (inputArray[i].Length < 4)
             {
-                
-                outputArray[minCount] = inputArray[i];
-                minCount++;
+                ++outputArraySize;
+            }
+        }
+        return outputArraySize;
+    }
+    
+    static void Main() {
+        
+        string[] inputArray = new string[] { "hello", "2", "world", ":-)", "1234", "156", "-2", "computer science", "Russia", "Denmark", "Kazan"};
+        int outputArrayIndex = 0;
+        string[] outputArray = new string[getOutputArrayLength(inputArray)];
+        
+        
+        for (int i = 0; i < inputArray.Length; ++i)
+        {
+            if (inputArray[i].Length < 4)
+            {
+                outputArray[outputArrayIndex] = inputArray[i];
+                ++outputArrayIndex;
             }
         }
 
-        Console.Write("[");
-        Console.Write(string.Join(",", outputArray));
-        Console.WriteLine("]");
+        Console.Write("['");
+        Console.Write(string.Join("' , '", outputArray));
+        Console.WriteLine("']");
     }
 }
